@@ -24,5 +24,5 @@
 package org.pepit.p1.francais.lessons;
 
 public enum Response {
-    SEE_AND_HEAR, SEE_AND_NOT_HEAR, NOT_SEE_AND_NOT_HEAR
+    SEE_AND_HEAR, SEE_AND_NOT_HEAR, NOT_SEE_AND_NOT_HEAR, UNDEFINED
 }
