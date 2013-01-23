@@ -151,6 +151,7 @@ public class ExerciseView {
 	word = new TextView(context);
 	word.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 	word.setTextSize(30);
+	word.setTextColor(Color.BLACK);
 	word.setText(model.getLabel(moduleNumber, questionNumber));
 
 	rightLayout.addView(cardView);
