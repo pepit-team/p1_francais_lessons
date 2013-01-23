@@ -1,7 +1,7 @@
 /**
  * @file org/pepit/p1/francais/lessons/Response.java
  * 
- * PepitModel: an educational software
+ * PepitMobil: an educational software
  * This file is a part of the PepitModel environment
  * http://pepit.be
  *
