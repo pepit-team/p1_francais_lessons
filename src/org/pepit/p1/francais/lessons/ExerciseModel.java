@@ -43,16 +43,16 @@ public class ExerciseModel {
 
     public void build(int moduleNumber, int questionNumber) {
 	Random r = new Random();
-	Vector < Integer > cardList = new Vector < Integer >();
-	
+	Vector<Integer> cardList = new Vector<Integer>();
+
 	for (int i = 0; i < cardNumber; ++i) {
-	    cardList.add(Integer.valueOf(i));
+	    cardList.add(Integer.valueOf(i + 1));
 	}
 	cardIDs = new int[moduleNumber][questionNumber];
 	for (int i = 0; i < moduleNumber; ++i) {
 	    for (int j = 0; j < questionNumber; ++j) {
 		int index = r.nextInt(cardList.size());
-		
+
 		cardIDs[i][j] = cardList.elementAt(index).intValue();
 		cardList.remove(index);
 	    }

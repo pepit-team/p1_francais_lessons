@@ -30,6 +30,7 @@ import org.pepit.plugin.Utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -48,9 +49,9 @@ public class ExerciseView {
 	init(ctx, moduleNumber, questionNumber);
 
 	rootLayout = new LinearLayout(ctx);
-
+	rootLayout.setBackgroundColor(0xFF99CC66);
 	rootLayout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
-
+	
 	LinearLayout topLayout = new LinearLayout(ctx);
 	LinearLayout.LayoutParams topLayoutParams = new LinearLayout.LayoutParams(
 		LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -98,8 +99,9 @@ public class ExerciseView {
 	leftLayout.setOrientation(LinearLayout.VERTICAL);
 	leftLayout.setVerticalGravity(Gravity.CENTER_VERTICAL);
 	leftLayout.setHorizontalGravity(Gravity.RIGHT);
-	leftLayout.setPadding(0, 0, 10, 10);
-
+	leftLayout.setPadding(0, 0, 10, 0);
+	leftLayout.setBackgroundColor(0xFF99CC66);
+	
 	Bitmap bitmap = null;
 
 	try {
@@ -137,25 +139,39 @@ public class ExerciseView {
 	LinearLayout.LayoutParams rightLayoutParams = new LinearLayout.LayoutParams(
 		LinearLayout.LayoutParams.WRAP_CONTENT,
 		LinearLayout.LayoutParams.WRAP_CONTENT, 10);
-
+	
 	rightLayout.setOrientation(LinearLayout.VERTICAL);
 	rightLayout.setVerticalGravity(Gravity.CENTER_VERTICAL);
-	rightLayout.setHorizontalGravity(Gravity.LEFT);
+	rightLayout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);	
+	rightLayout.setBackgroundColor(0xFF99CC66);
+	rightLayout.setPadding(0, 0, 0, 0);
 
 	cardView = new ImageView(context);
 	cardView.setScaleType(ImageView.ScaleType.CENTER);
 	cardView.setImageBitmap(bitmap);
-	cardView.setPadding(1, 1, 1, 1);
+	cardView.setPadding(2, 2, 2, 2);
 	cardView.setBackgroundColor(Color.BLACK);
+
+	LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+		LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT);
+
+	rightLayout.addView(cardView, cardParams);
 
 	word = new TextView(context);
 	word.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-	word.setTextSize(30);
+	word.setBackgroundColor(Color.YELLOW);
+	word.setPadding(50, 10, 50, 10);
+	word.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
 	word.setTextColor(Color.BLACK);
 	word.setText(model.getLabel(moduleNumber, questionNumber));
 
-	rightLayout.addView(cardView);
-	rightLayout.addView(word);
+	LinearLayout.LayoutParams wordParams = new LinearLayout.LayoutParams(
+		LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT);
+	
+	wordParams.setMargins(0, 10, 0, 0);
+	rightLayout.addView(word, wordParams);
 
 	layout.addView(rightLayout, rightLayoutParams);
     }
