@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
+import java.util.Vector;
 
 import org.pepit.plugin.Utils;
 
@@ -35,20 +36,25 @@ import android.util.JsonReader;
 
 public class ExerciseModel {
 
-    public ExerciseModel(org.pepit.plugin.Interface plugin, String letter,
-	    int cardNumber) {
+    public ExerciseModel(org.pepit.plugin.Interface plugin, String letter) {
 	this.letter = letter;
-	this.cardNumber = cardNumber;
 	read(plugin);
     }
 
     public void build(int moduleNumber, int questionNumber) {
 	Random r = new Random();
-
+	Vector < Integer > cardList = new Vector < Integer >();
+	
+	for (int i = 0; i < cardNumber; ++i) {
+	    cardList.add(Integer.valueOf(i));
+	}
 	cardIDs = new int[moduleNumber][questionNumber];
 	for (int i = 0; i < moduleNumber; ++i) {
 	    for (int j = 0; j < questionNumber; ++j) {
-		cardIDs[i][j] = r.nextInt(cardNumber);
+		int index = r.nextInt(cardList.size());
+		
+		cardIDs[i][j] = cardList.elementAt(index).intValue();
+		cardList.remove(index);
 	    }
 	}
     }
@@ -69,8 +75,6 @@ public class ExerciseModel {
 	InputStream in = null;
 	JsonReader reader = null;
 
-	responses = new Response[cardNumber];
-	labels = new String[cardNumber];
 	try {
 	    in = Utils.getDataFile(plugin, letter + ".json");
 	} catch (IOException e) {
@@ -81,6 +85,26 @@ public class ExerciseModel {
 	} catch (UnsupportedEncodingException e) {
 	    e.printStackTrace();
 	}
+	try {
+	    reader.beginObject();
+	    while (reader.hasNext()) {
+		String name = reader.nextName();
+
+		if (name.equals("number")) {
+		    cardNumber = (int) reader.nextLong();
+		    responses = new Response[cardNumber];
+		    labels = new String[cardNumber];
+		} else if (name.equals("cards")) {
+		    readCards(reader);
+		}
+	    }
+	    reader.endObject();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    private void readCards(JsonReader reader) {
 	try {
 	    reader.beginArray();
 	    while (reader.hasNext()) {

@@ -82,9 +82,8 @@ public class ExerciseView {
 	button.setBackgroundColor(Color.WHITE);
 	button.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
-		v.setBackgroundColor(Color.RED);
-		v.invalidate();
 		setResponse(rfinal);
+		v.setBackgroundColor(Color.RED);
 	    }
 	});
 	return button;
@@ -169,7 +168,7 @@ public class ExerciseView {
     }
 
     private void init(Context context, int moduleNumber, int questionNumber) {
-	model = new ExerciseModel(plugin, "A", cardNumber);
+	model = new ExerciseModel(plugin, "A");
 	model.build(moduleNumber, questionNumber);
 	try {
 	    seeAndHearBitmap = Utils.getImage(plugin, "image_SH.png");
@@ -182,10 +181,14 @@ public class ExerciseView {
     }
 
     private void setResponse(Response r) {
+	seeAndHearButton.setBackgroundColor(Color.WHITE);
+	seeAndHearButton.invalidate();
+	seeAndNotHearButton.setBackgroundColor(Color.WHITE);
+	seeAndNotHearButton.invalidate();
+	notSeeAndNotHearButton.setBackgroundColor(Color.WHITE);
+	notSeeAndNotHearButton.invalidate();
 	response = r;
     }
-
-    private final int cardNumber = 25;
 
     private int moduleNumber;
     private int questionNumber;
