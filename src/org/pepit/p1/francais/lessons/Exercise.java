@@ -155,8 +155,8 @@ public class Exercise implements org.pepit.plugin.Interface {
 	// view.displayErrorMessage();
     }
 
-    public int getScore() {
-	// TODO Auto-generated method stub
+    @Override
+    public int getPointsRightAnswer(int selectedExercise) {
 	return 0;
     }
 
