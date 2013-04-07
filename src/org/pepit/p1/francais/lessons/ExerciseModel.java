@@ -30,7 +30,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 import java.util.Vector;
 
-import org.pepit.plugin.Utils;
+import org.pepit.plugin.PluginFile;
 
 import android.util.JsonReader;
 
@@ -76,7 +76,7 @@ public class ExerciseModel {
 	JsonReader reader = null;
 
 	try {
-	    in = Utils.getDataFile(plugin, letter + ".json");
+	    in = PluginFile.getDataFile(plugin, letter + ".json");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

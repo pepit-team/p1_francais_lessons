@@ -25,7 +25,7 @@ package org.pepit.p1.francais.lessons;
 
 import java.io.IOException;
 
-import org.pepit.plugin.Utils;
+import org.pepit.plugin.PluginFile;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -105,7 +105,7 @@ public class ExerciseView {
 	Bitmap bitmap = null;
 
 	try {
-	    bitmap = Utils.getImage(plugin,
+	    bitmap = PluginFile.getImage(plugin,
 		    "card_A_" + model.getCardID(moduleNumber, questionNumber)
 			    + ".png");
 	} catch (IOException e) {
@@ -128,7 +128,7 @@ public class ExerciseView {
 	Bitmap bitmap = null;
 
 	try {
-	    bitmap = Utils.getImage(plugin,
+	    bitmap = PluginFile.getImage(plugin,
 		    "card_A_" + model.getCardID(moduleNumber, questionNumber)
 			    + ".png");
 	} catch (IOException e) {
@@ -188,9 +188,9 @@ public class ExerciseView {
 	model = new ExerciseModel(plugin, "A");
 	model.build(moduleNumber, questionNumber);
 	try {
-	    seeAndHearBitmap = Utils.getImage(plugin, "image_SH.png");
-	    seeAndNotHearBitmap = Utils.getImage(plugin, "image_SNH.png");
-	    notSeeAndNotHearBitmap = Utils.getImage(plugin, "image_NSNH.png");
+	    seeAndHearBitmap = PluginFile.getImage(plugin, "image_SH.png");
+	    seeAndNotHearBitmap = PluginFile.getImage(plugin, "image_SNH.png");
+	    notSeeAndNotHearBitmap = PluginFile.getImage(plugin, "image_NSNH.png");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
